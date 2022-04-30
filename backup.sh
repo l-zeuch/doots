@@ -18,7 +18,6 @@ make_backup() {
     echo "Copying $PREFIX$conf into $parent..."
     cp -r $PREFIX$conf $parent
   done
-  rm -rf zsh/plugins/*
 }
 
 show_help() {

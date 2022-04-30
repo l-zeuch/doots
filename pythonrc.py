@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Do not create a history file in $HOME.
 # (I really hate clutter)
 import readline
