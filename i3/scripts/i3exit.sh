@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 lock() {
-	betterlockscreen -l blur
+	betterlockscreen -l blur &
 }
 
 case "$1" in
@@ -26,5 +26,3 @@ case "$1" in
 esac
 
 exit 0
-
-
