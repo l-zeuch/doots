@@ -9,7 +9,17 @@ PREFIX="$HOME/.config/"
 FILES=( "bat/" "dunst/" "fontconfig/" "i3/" "i3status-rust/" "kitty/" "picom.conf"
   "zsh/custom" "zsh/.zshrc" "nvim/lua/user" "pythonrc.py" )
 
+clean() {
+  rm .profile
+  for conf in "${FILES[@]}"; do
+    parent=${conf%%/*}
+    rm -rf $parent
+  done
+}
+
 make_backup() {
+  clean
+
   echo "Copying $PROFILE..."
   cp $PROFILE .
 
@@ -18,6 +28,7 @@ make_backup() {
     echo "Copying $PREFIX$conf into $parent..."
     cp -r $PREFIX$conf $parent
   done
+  rm -rf zsh/plugins
 }
 
 show_help() {
