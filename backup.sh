@@ -1,16 +1,30 @@
 #!/usr/bin/env zsh
 
+#
 # Helper script to conveniently create a backup and/or apply it.
-# Use with caution, paths are hardcoded (kinda).
+# Use with caution, I'm not very good with shell scripts.
+# Requires ZSH to run (because I used ZSH-specific features, duh).
+#
 
 PROFILE="$HOME/.profile"
 
+# Tell this script where your dotfiles you wish to backup are located.
+# Personally, I only care about those in my .config folder, and thus this script
+# is kinda written with that in mind.
 PREFIX="$HOME/.config/"
-FILES=( "bat/" "dunst/" "fontconfig/" "i3/" "i3status-rust/" "kitty/" "picom.conf"
-  "zsh/custom" "zsh/.zshrc" "nvim/lua/user" "pythonrc.py" )
 
+# Files to backup. If it's entire directories, postpend them with a slash.
+# For individual files, don't do that.
+#
+# Order matters here: List directories first, then specific files, especially
+# when you have individual files in directories you want to copy.
+FILES=( "bat/" "dunst/" "fontconfig/" "i3/" "i3status-rust/" "kitty/"
+  "picom.conf" "zsh/custom" "zsh/.zshrc" "nvim/lua/user" "pythonrc.py" )
+
+# We remove the currently present parent folders to avoid copying our (new)
+# backups into these parent folders, thus keeping the structure tight and
+# actually usable.
 clean() {
-  rm .profile
   for conf in "${FILES[@]}"; do
     parent=${conf%%/*}
     rm -rf $parent
@@ -21,13 +35,17 @@ make_backup() {
   clean
 
   echo "Copying $PROFILE..."
-  cp $PROFILE .
+  cp $PROFILE profile
 
   for conf in "${FILES[@]}"; do
     parent=${conf%%/*}
     echo "Copying $PREFIX$conf into $parent..."
     cp -r $PREFIX$conf $parent
   done
+
+  # Remove this directory because it contains (generally speaking) git
+  # repositories, we don't want that submodule jank(tm). If you have your own
+  # plugins written and don't track them with git feel free to modify this line.
   rm -rf zsh/plugins
 }
 
