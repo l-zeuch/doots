@@ -25,6 +25,7 @@ export PATH=$PATH
 export TERMINAL="kitty"
 
 export EDITOR=/usr/bin/nvim
+export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 # Clean $HOME, according to XDG directory specification
