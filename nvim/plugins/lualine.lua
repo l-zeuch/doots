@@ -1,6 +1,10 @@
-local function getWords()
-  local wc = vim.fn.wordcount()
-  local tmp = tostring(wc.chars) .. "C " .. tostring(wc.words) .. "W"
+--local components = {
+--  active = {},
+--  inactive = {},
+--}
+
+--return components
+chars) .. "C " .. tostring(wc.words) .. "W "
   return tmp
 end
 
@@ -34,7 +38,11 @@ return {
     lualine_y = {
       {
         getWords,
-        color = { bg = get_hl_prop("LineNr", "foreground", colors.purple_1), gui = "none" },
+        color = {
+          fg = get_hl_prop("Conditional", "foreground", colors.purple_1),
+          bg = get_hl_prop("LineNr", "foreground", colors.purple_1),
+          gui = "none",
+        },
       },
     },
     lualine_z = { 'mode' },

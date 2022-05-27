@@ -19,41 +19,10 @@ local config = {
     end,
   },
 
-  -- Disable default plugins
-  enabled = {
-    bufferline = true,
-    neo_tree = true,
-    lualine = true,
-    gitsigns = true,
-    colorizer = true,
-    toggle_term = true,
-    comment = true,
-    symbols_outline = true,
-    indent_blankline = true,
-    dashboard = true,
-    which_key = true,
-    neoscroll = true,
-    ts_rainbow = true,
-    ts_autotag = true,
-  },
-
   -- Disable AstroVim ui features
   ui = {
     nui_input = true,
     telescope_select = true,
-  },
-
-  -- Configure plugins
-  plugins = {
-    -- All other entries override the setup() call for default plugins
-    treesitter = {
-      ensure_installed = { "lua" },
-    },
-  },
-
-  -- Add paths for including more VS Code style snippets in luasnip
-  luasnip = {
-    vscode_snippet_paths = {},
   },
 
   -- Modify which-key registration
@@ -150,18 +119,20 @@ local config = {
       let g:ale_sign_error = ' '
       let g:ale_sign_warning = ' '
 
+      let g:livepreview_previewer = 'xreader'
+
       filetype plugin indent on
       syntax enable
-
-      autocmd! dashboard_settings
 
       augroup remove_trailing_spaces
         autocmd!
         autocmd BufWritePre * :%s/\s\+$//e
       augroup end
+
       augroup packer_conf
         autocmd!
         autocmd bufwritepost plugins.lua source <afile> | PackerSync
+
       augroup end
     ]]
   end,
