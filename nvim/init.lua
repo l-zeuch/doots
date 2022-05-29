@@ -110,6 +110,11 @@ local config = {
     set.relativenumber = false
     set.compatible = false
     set.textwidth = 80
+    set.shiftwidth = 4
+    set.expandtab = false
+    set.tabstop = 4
+
+    set.laststatus = 2
 
     -- Set key bindings
     map("n", "<C-s>", ":w!<CR>", opts)
@@ -123,6 +128,8 @@ local config = {
 
       filetype plugin indent on
       syntax enable
+
+      autocmd! alpha_settings
 
       augroup remove_trailing_spaces
         autocmd!

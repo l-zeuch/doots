@@ -1,10 +1,6 @@
---local components = {
---  active = {},
---  inactive = {},
---}
-
---return components
-chars) .. "C " .. tostring(wc.words) .. "W "
+local function getWords()
+  local wc = vim.fn.wordcount()
+  local tmp = tostring(wc.chars) .. "C " .. tostring(wc.words) .. "W "
   return tmp
 end
 
