@@ -18,7 +18,6 @@ return {
   },
   {
     'l-zeuch/yagpdb.vim',
-    after = "nvim-cmp",
     config = function()
       local cmp = require "cmp"
       local config = cmp.get_config()

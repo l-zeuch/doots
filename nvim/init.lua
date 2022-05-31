@@ -5,7 +5,6 @@ local config = {
 
   -- Default theme configuration
   default_theme = {
-    diagnostics_style = "none",
     -- Modify the color table
     colors = {
       fg = "#abb2bf",
