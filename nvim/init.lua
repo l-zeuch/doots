@@ -29,6 +29,7 @@ local config = {
     -- Add bindings to the normal mode <leader> mappings
     register_n_leader = {
       -- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
+      ["fl"] =  { "<cmd>set list!<CR>", "Toggle Whitespaces"},
     },
   },
 
@@ -56,12 +57,6 @@ local config = {
         },
       },
     },
-  },
-
-  -- Diagnostics configuration (for vim.diagnostics.config({}))
-  diagnostics = {
-    virtual_text = true,
-    underline = true,
   },
 
   -- null-ls configuration
@@ -104,6 +99,7 @@ local config = {
     local opts = { noremap = true, silent = true }
     local map = vim.api.nvim_set_keymap
     local set = vim.opt
+    local g = vim.g
 
     -- Set options
     set.relativenumber = false
@@ -115,33 +111,41 @@ local config = {
 
     set.laststatus = 2
 
+    g.yagpdbcc_override_ft = 1
+
+    g.ale_sign_error = ' '
+    g.ale_sign_warning = ' '
+
+    g.livepreview_previewer = 'xreader'
+
     -- Set key bindings
     map("n", "<C-s>", ":w!<CR>", opts)
 
     -- Set autocommands
-    vim.cmd [[
-      let g:ale_sign_error = ' '
-      let g:ale_sign_warning = ' '
+    vim.api.nvim_del_augroup_by_name "alpha_settings"
 
-      let g:livepreview_previewer = 'xreader'
+    vim.api.nvim_create_augroup("remove_trailing_spaces", {})
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      desc = "Remove trailing whitespaces before writing",
+      group = "remove_trailing_spaces",
+      pattern = "*",
+      command = ":%s/\\s\\+$//e",
+    })
+
+    vim.api.nvim_create_augroup("packer_conf", {})
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      desc = "Run packersync on update of plugin file",
+      group = "packer_conf",
+      pattern = "plugins.lua",
+      command = "source <afile> | PackerSync",
+    })
+
+    vim.cmd [[
+      set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
       filetype plugin indent on
       syntax enable
-
-      autocmd! alpha_settings
-
-      augroup remove_trailing_spaces
-        autocmd!
-        autocmd BufWritePre * :%s/\s\+$//e
-      augroup end
-
-      augroup packer_conf
-        autocmd!
-        autocmd bufwritepost plugins.lua source <afile> | PackerSync
-
-      augroup end
     ]]
   end,
 }
-
 return config

@@ -18,6 +18,7 @@ return {
   },
   {
     'l-zeuch/yagpdb.vim',
+    after = "nvim-cmp",
     config = function()
       local cmp = require "cmp"
       local config = cmp.get_config()
@@ -35,4 +36,7 @@ return {
     require'sort'.setup({})
   end,
   },
+
+  ["declancm/cinnamon.nvim"] = { disable = true },
+  ["antoniemedac/FixCursorHold.nvim"] = { disable = true },
 }
