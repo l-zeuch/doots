@@ -19,11 +19,10 @@ font pango:DejaVu Sans Mono 9
 exec --no-startup-id compton
 exec --no-startup-id dunst
 exec --no-startup-id NetworkManager
-exec_always --no-startup-id feh --bg-fill --no-fehbg ~/desktop/pictures/wallpapers/wallpaper.png
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id systemctl --user import-environment DISPLAY
-
+exec --no-startup-id pacwall -ug
 # Includes
 include bindings.conf
 include decor.conf
