@@ -16,9 +16,8 @@ if [ -d "$HOME/.local/share/npm/bin" ] ; then
     PATH="$HOME/.local/share/npm/bin:$PATH"
 fi
 
-PATH="$HOME/.local/share/cargo/env:$PATH"
 PATH="/usr/local/go/bin:$PATH"
-PATH="$HOME/.local/share/cargo/bin:/var/lib/gems/2.7.0/gems:$PATH"
+PATH="/var/lib/gems/2.7.0/gems:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 export PATH=$PATH
 
