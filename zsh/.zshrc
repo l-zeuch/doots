@@ -90,8 +90,10 @@ pfetch
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-export GPG_TTY=$(tty)
-gpgconf --launch gpg-agent
+if [[ -d $HOME/.local/share/gnupg ]]; then
+    export GPG_TTY=$(tty)
+    gpgconf --launch gpg-agent
+fi
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
