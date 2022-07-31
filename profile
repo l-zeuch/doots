@@ -20,12 +20,14 @@ PATH="/usr/local/go/bin:$PATH"
 PATH="/var/lib/gems/2.7.0/gems:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 PATH="$HOME/.config/spicetify:$PATH"
+PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
 export PATH=$PATH
 
 export TERMINAL="kitty"
 
 export EDITOR=/usr/bin/nvim
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 # Clean $HOME, according to XDG directory specification
