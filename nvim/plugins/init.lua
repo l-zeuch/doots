@@ -10,6 +10,7 @@ return {
     { 'junegunn/vader.vim', cmd = 'vader', ft = 'vader' },
     { 'xuhdev/vim-latex-live-preview', cmd = 'llpstartpreview' },
     { 'editorconfig/editorconfig-vim' },
+    { 'ionide/Ionide-vim' },
     {
         'hrsh7th/cmp-cmdline',
         after = "nvim-cmp",

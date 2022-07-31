@@ -28,22 +28,12 @@ local config = {
     ["which-key"] = {
         -- Add bindings to the normal mode <leader> mappings
         register_n_leader = {
-            -- ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
             ["fl"] =  { "<cmd>set list!<CR>", "Toggle Whitespaces"},
         },
     },
 
     -- Extend LSP configuration
     lsp = {
-    -- add to the server on_attach function
-    -- on_attach = function(client, bufnr)
-    -- end,
-
-    -- override the lsp installer server-registration function
-    -- server_registration = function(server, opts)
-    --   server:setup(opts)
-    -- end
-
         -- Add overrides for LSP server settings, the keys are the name of the server
         ["server-settings"] = {
             yamlls = {
@@ -96,13 +86,13 @@ local config = {
     options = {
         opt = {
             relativenumber = false,
-            compatible = false,
             textwidth = 80,
             tabstop = 8,
             softtabstop = 4,
             shiftwidth = 4,
             expandtab = true,
             laststatus = 2,
+            listchars="tab:→\\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»",
         },
     },
 
@@ -143,10 +133,10 @@ local config = {
         })
 
         vim.cmd [[
-        set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-
         filetype plugin indent on
         syntax enable
+
+        let g:fsharp#backend = "nvim"
         ]]
     end,
 }
