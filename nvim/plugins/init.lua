@@ -22,6 +22,16 @@ return {
         end,
     },
     {
+        'hrsh7th/cmp-omni',
+        after = "nvim-cmp",
+        config = function()
+            local cmp = require "cmp"
+            local config = cmp.get_config()
+            table.insert(config.sources, { name = 'omni' })
+            cmp.setup(config)
+        end,
+    },
+    {
         'l-zeuch/yagpdb.vim',
         config = function()
             local cmp = require "cmp"
