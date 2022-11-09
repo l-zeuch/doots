@@ -1,143 +1,95 @@
 local config = {
 
-    -- Set colorscheme
-    colorscheme = "nord",
+  -- Configure AstroNvim updates
+  updater = {
+    remote = "origin", -- remote to use
+    channel = "nightly", -- "stable" or "nightly"
+    version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
+    branch = "main", -- branch name (NIGHTLY ONLY)
+    commit = nil, -- commit hash (NIGHTLY ONLY)
+    pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
+    skip_prompts = false, -- skip prompts about breaking changes
+    show_changelog = true, -- show the changelog after performing an update
+    auto_reload = false, -- automatically reload and sync packer after a successful update
+    auto_quit = false, -- automatically quit the current session after a successful update
+  },
 
-    -- Default theme configuration
-    default_theme = {
-        -- Modify the color table
-        colors = {
-            fg = "#abb2bf",
-        },
-        -- Modify the highlight groups
-        highlights = function(highlights)
-            local C = require "default_theme.colors"
+  -- Set colorscheme to use
+  colorscheme = "nord",
 
-            highlights.Normal = { fg = C.fg, bg = C.bg }
-            return highlights
-        end,
+  -- set vim options here (vim.<first_key>.<second_key> =  value)
+  options = {
+    opt = {
+      -- set to true or false etc.
+      relativenumber = false, -- sets vim.opt.relativenumber
+      number = true, -- sets vim.opt.number
+      spell = false, -- sets vim.opt.spell
+      signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+      wrap = false, -- sets vim.opt.wrap
+      laststatus = 2,
+      showtabline = 2,
+      cmdheight = 1,
     },
-
-    -- Disable AstroVim ui features
-    ui = {
-        nui_input = true,
-        telescope_select = true,
+    g = {
+      mapleader = " ", -- sets vim.g.mapleader
+      cmp_enabled = true, -- enable completion at start
+      autopairs_enabled = true, -- enable autopairs at start
+      diagnostics_enabled = true, -- enable diagnostics at start
+      status_diagnostics_enabled = true, -- enable diagnostics in statusline
+      vimtex_view_general_viewer = "xreader",
     },
+  },
 
-    -- Modify which-key registration
-    ["which-key"] = {
-        -- Add bindings to the normal mode <leader> mappings
-        register_n_leader = {
-            ["fl"] =  { "<cmd>set list!<CR>", "Toggle Whitespaces"},
-        },
+  -- Default theme configuration
+  default_theme = {
+    -- enable or disable highlighting for extra plugins
+    plugins = {
+      aerial = true,
+      beacon = false,
+      bufferline = true,
+      dashboard = true,
+      highlighturl = true,
+      hop = false,
+      indent_blankline = true,
+      lightspeed = false,
+      ["neo-tree"] = true,
+      notify = true,
+      ["nvim-tree"] = false,
+      ["nvim-web-devicons"] = true,
+      rainbow = true,
+      symbols_outline = false,
+      telescope = true,
+      vimwiki = false,
+      ["which-key"] = true,
     },
+  },
 
-    -- Extend LSP configuration
-    lsp = {
-        -- Add overrides for LSP server settings, the keys are the name of the server
-        ["server-settings"] = {
-            yamlls = {
-                settings = {
-                    yaml = {
-                        schemas = {
-                            ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
-                            ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-                        },
-                    },
-                },
-            },
-        },
+  -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
+  diagnostics = {
+    virtual_text = true,
+    underline = true,
+  },
+
+  -- CMP Source Priorities
+  -- modify here the priorities of default cmp sources
+  -- higher value == higher priority
+  -- The value can also be set to a boolean for disabling default sources:
+  -- false == disabled
+  -- true == 1000
+  cmp = {
+    source_priority = {
+      nvim_lsp = 1000,
+      luasnip = 750,
+      buffer = 500,
+      path = 250,
     },
+  },
 
-    -- null-ls configuration
-    ["null-ls"] = function()
-        -- Formatting and linting
-        -- https://github.com/jose-elias-alvarez/null-ls.nvim
-        local status_ok, null_ls = pcall(require, "null-ls")
-        if not status_ok then
-            return
-        end
-
-        -- Check supported formatters
-        -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-        local formatting = null_ls.builtins.formatting
-
-        -- Check supported linters
-        -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-        local diagnostics = null_ls.builtins.diagnostics
-
-        null_ls.setup {
-            debug = false,
-            sources = {
-                -- Set a formatter
-                formatting.rufo,
-                -- Set a linter
-                diagnostics.rubocop,
-            },
-            -- NOTE: You can remove this on attach function to disable format on save
-            on_attach = function(client)
-                if client.resolved_capabilities.document_formatting then
-                    vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
-                end
-            end,
-        }
-    end,
-
-    options = {
-        opt = {
-            relativenumber = false,
-            textwidth = 80,
-            tabstop = 8,
-            softtabstop = 4,
-            shiftwidth = 4,
-            expandtab = true,
-            laststatus = 2,
-            listchars="tab:→\\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»",
-        },
-    },
-
-    -- This function is run last
-    -- good place to configure mappings and vim options
-    polish = function()
-        local opts = { noremap = true, silent = true }
-        local map = vim.api.nvim_set_keymap
-        local g = vim.g
-
-        g.yagpdbcc_override_ft = 1
-
-        g.ale_sign_error = ' '
-        g.ale_sign_warning = ' '
-
-        g.livepreview_previewer = 'xreader'
-
-        -- Set key bindings
-        map("n", "<C-s>", ":w!<CR>", opts)
-
-        -- Set autocommands
-        vim.api.nvim_del_augroup_by_name "alpha_settings"
-
-        vim.api.nvim_create_augroup("remove_trailing_spaces", {})
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            desc = "Remove trailing whitespaces before writing",
-            group = "remove_trailing_spaces",
-            pattern = "*",
-            command = ":%s/\\s\\+$//e",
-        })
-
-        vim.api.nvim_create_augroup("packer_conf", {})
-        vim.api.nvim_create_autocmd("BufWritePost", {
-            desc = "Run packersync on update of plugin file",
-            group = "packer_conf",
-            pattern = "plugins.lua",
-            command = "source <afile> | PackerSync",
-        })
-
-        vim.cmd [[
-        filetype plugin indent on
-        syntax enable
-
-        let g:fsharp#backend = "nvim"
-        ]]
-    end,
+  -- This function is run last and is a good place to configuring
+  -- augroups/autocommands and custom filetypes also this just pure lua so
+  -- anything that doesn't fit in the normal config locations above can go here
+  polish = function()
+  end,
 }
+
 return config

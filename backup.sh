@@ -19,7 +19,7 @@ PREFIX="$HOME/.config/"
 # Order matters here: List directories first, then specific files, especially
 # when you have individual files in directories you want to copy.
 FILES=( "bat/" "dunst/" "fontconfig/" "i3/" "i3status-rust/" "kitty/"
-    "tmux/" "picom.conf" "zsh/custom" "zsh/.zshrc" "nvim/lua/user" "pythonrc.py" )
+    "tmux/" "rofi/" "picom.conf" "zsh/custom" "zsh/.zshrc" "nvim/lua/user" "pythonrc.py" )
 
 # We remove the currently present parent folders to avoid copying our (new)
 # backups into these parent folders, thus keeping the structure tight and
