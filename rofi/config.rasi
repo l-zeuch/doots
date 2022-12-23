@@ -7,6 +7,7 @@ configuration {
     display-drun:   "";
     display-window: "";
     display-combi:  "";
+    display-clipboard: "";
     show-icons:     true;
 }
 

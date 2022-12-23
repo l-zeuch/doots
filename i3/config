@@ -23,6 +23,8 @@ exec --no-startup-id feh --no-fehbg --bg-fill ~/Desktop/pictures/kittyboard.png
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id systemctl --user import-environment DISPLAY
+exec_always --no-startup-id greenclip daemon
+
 # Includes
 include bindings.conf
 include decor.conf

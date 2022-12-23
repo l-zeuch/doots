@@ -19,7 +19,7 @@ PREFIX="$HOME/.config/"
 # Order matters here: List directories first, then specific files, especially
 # when you have individual files in directories you want to copy.
 FILES=( "bat/" "dunst/" "fontconfig/" "i3/" "i3status-rust/" "kitty/"
-    "tmux/" "rofi/" "picom.conf" "zsh/custom" "zsh/.zshrc" "nvim/lua/user" "pythonrc.py" )
+  "tmux/" "rofi/" "picom.conf" "zsh/custom" "zsh/.zshrc" "zsh/.zlogin" "pythonrc.py" )
 
 # We remove the currently present parent folders to avoid copying our (new)
 # backups into these parent folders, thus keeping the structure tight and
@@ -34,12 +34,12 @@ clean() {
 make_backup() {
   clean
 
-  echo "Copying $PROFILE..."
+  echo "\033[32;1m==>\033[0m \033[1mCopying $PROFILE...\033[0m"
   cp $PROFILE profile
 
   for conf in "${FILES[@]}"; do
     parent=${conf%%/*}
-    echo "Copying $PREFIX$conf into $parent..."
+    echo "\033[32;1m==>\033[0m \033[1mCopying $PREFIX$conf into $parent...\033[0m"
     cp -r $PREFIX$conf $parent
   done
 
@@ -52,10 +52,10 @@ make_backup() {
 
 show_help() {
   echo "Usage:
-    backup [action]
-  Create and/or apply a backup of dotfiles.
+  backup [action]
+    Create and/or apply a backup of dotfiles.
 
-  Configure the paths and whatnot by editing the script.
+    Configure the paths and whatnot by editing the script.
 
   Actions:
     create: create a backup and store it in this folder.
