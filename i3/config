@@ -19,7 +19,7 @@ font pango:DejaVu Sans Mono 9
 exec --no-startup-id compton
 exec --no-startup-id dunst
 exec --no-startup-id NetworkManager
-exec --no-startup-id feh --no-fehbg --bg-fill ~/Desktop/pictures/kittyboard.png
+exec --no-startup-id feh --no-fehbg --bg-fill ~/Desktop/share/Pictures/wallpapers/kittyboard.png
 exec_always --no-startup-id xset s off
 exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id systemctl --user import-environment DISPLAY
