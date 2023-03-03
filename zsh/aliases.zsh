@@ -19,3 +19,8 @@ which exa &>/dev/null
 if [[ $? -eq 0 ]]; then
 	alias ls='exa --long --group-directories-first --icons'
 fi
+
+which zoxide &>/dev/null
+if [[ $? -eq 0 ]]; then
+  alias cd='z'
+fi

@@ -61,8 +61,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 HIST_STAMPS="yyyy-mm-dd"
-HISTFILE="~/.config/zsh/.zsh_history"
-
+HISTFILE="/home/l-zeuch/.config/zsh/.zsh_history"
+INC_APPEND_HISTORY=true
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=~/.config/zsh/custom
@@ -80,13 +80,14 @@ ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan'
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
 
-plugins=(gh zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions golang)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.profile
 
 # User configuration
 pfetch
+compinit
 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
@@ -95,6 +96,7 @@ if [[ -d $HOME/.local/share/gnupg ]]; then
     gpgconf --launch gpg-agent
 fi
 
+eval "$(zoxide init zsh)"
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
