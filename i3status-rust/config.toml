@@ -1,47 +1,40 @@
-icons = "material-nf"
+icons_format = "{icon}"
+
+[icons]
+icons = "awesome5"
+
+[theme]
 theme = "nord-dark"
 
 [[block]]
 block = "cpu"
-format = "{utilization}"
-info = 40
-interval = 5
 
 [[block]]
 block = "temperature"
-collapsed = false
-interval = 5
 idle = 65
 info = 90
 warning = 95
-format = "{average}C"
+format = " $icon $average "
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used} ({cached}) /{mem_total}"
-interval = 1
+format = " $icon $mem_used.eng(prefix:M,w:4) ($cached.eng(prefix:M,w:4)) /$mem_total.eng(prefix:M,w:4) "
 
 [[block]]
 block = "load"
-critical = 1.2
-format = "{1m}, {5m}, {15m}"
+format = " $icon  $1m.eng(w:4), $5m.eng(w:4), $15m.eng(w:4) "
 info = 0.6
-interval = 5
 warning = 0.9
+critical = 1.2
 
 [[block]]
 block = "sound"
-format = "{volume}"
-on_click = "kitty -e alsamixer"
+format = " $icon $volume "
 
 [[block]]
 block = "music"
-buttons = ["prev", "play", "next"]
-format = " {combo} "
+format = " $icon {$combo.str(w:30,rot_interval:0.5) $prev $play $next |}"
 interface_name_exclude = [".*kdeconnect.*", "mpd"]
-max_width = 30
-on_collapsed_click = "spotify"
 
 #[[block]]
 #block = "battery"
@@ -59,23 +52,19 @@ on_collapsed_click = "spotify"
 #on_click = "blueberry"
 
 [[block]]
-block = "networkmanager"
-ap_format = "{ssid^10}: {strength}"
-device_format = "{icon}{ap}"
-interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
-on_click = "kitty -e nmtui"
+block = "net"
+format = " $icon  ^icon_net_down $speed_down.eng(prefix:K,w:3) ^icon_net_up $speed_up.eng(prefix:K,w:3) "
 
 [[block]]
 block = "time"
-format = "%a, %T %F"
+format = " $icon $timestamp.datetime(f:'%a, %T %F', l:en_GB) "
 interval = 1
 
 [[block]]
 block = "github"
-format = "{total}"
+format = " $icon $total.eng(w:1) "
 info = ["total"]
 warning = ["mention","review_requested"]
-on_click = "firefox https://github.com/notifications"
 
 [[block]]
 block = "notify"
