@@ -18,7 +18,7 @@
     horizontal_padding = 8
     icon_path = /usr/share/icons/Adwaita/32x32:/usr/share/icons/hicolor/32x32
     icon_position = left
-    idle_threshold = 120
+    idle_threshold = 300
     ignore_dbusclose = true
     ignore_newline = no
     indicate_hidden = yes
@@ -58,18 +58,18 @@
     foreground = "#D8DEE9"
     frame_color = "#81A1C1"
     timeout = 10
-    new_icon = /usr/share/icons/Adwaita/24x24/actions/help-about-symbolic.symbolic.png
+    # new_icon = /usr/share/icons/Adwaita/24x24/actions/help-about-symbolic.symbolic.png
 
 [urgency_normal]
     background = "#3B4252"
     foreground = "#D8DEE9"
     frame_color = "#8FBCBB"
     timeout = 25
-    new_icon = /usr/share/icons/Adwaita/24x24/status/dialog-information-symbolic.symbolic.png
+    # new_icon = /usr/share/icons/Adwaita/24x24/status/dialog-information-symbolic.symbolic.png
 
 [urgency_critical]
     background = "#3B4252"
     foreground = "#D8DEE9"
     frame_color = "#BF616A"
     timeout = 20
-    new_icon = /usr/share/icons/Adwaita/24x24/status/dialog-warning-symbolic.symbolic.png
+    # new_icon = /usr/share/icons/Adwaita/24x24/status/dialog-warning-symbolic.symbolic.png
