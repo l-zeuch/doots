@@ -30,3 +30,4 @@ include bindings.conf
 include decor.conf
 include modes.conf
 include workspaces.conf
+include applications.conf
