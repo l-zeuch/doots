@@ -97,6 +97,7 @@ if [[ -d $HOME/.local/share/gnupg ]]; then
 fi
 
 eval "$(zoxide init zsh)"
+
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'

@@ -18,7 +18,7 @@ format = " $icon $average "
 
 [[block]]
 block = "memory"
-format = " $icon $mem_used.eng(prefix:M,w:4) ($cached.eng(prefix:M,w:4)) /$mem_total.eng(prefix:M,w:4) "
+format = " $icon $mem_used.eng(prefix:M,w:4) ($cached.eng(prefix:M,w:4)) / $mem_total.eng(prefix:M,w:4) "
 
 [[block]]
 block = "load"
