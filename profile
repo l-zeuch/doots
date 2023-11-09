@@ -33,9 +33,9 @@ export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$X
 # Clean $HOME, according to XDG directory specification
 # See also: https://wiki.archlinux.org/title/XDG_Base_Directory
 if [ -f "$HOME/.config/dirs.rc" ]; then
-    source $HOME/.config/dirs.rc
+    source "$HOME/.config/dirs.rc"
 fi
 
-if [ -f "$HOME/.config/secrets.env" ]; then
-    source $HOME/.config/secrets.env
+if [ -f "$HOME/.config/zsh/secrets.env" ]; then
+    source "$HOME/.config/zsh/secrets.env"
 fi
