@@ -1,5 +1,5 @@
 configuration {
-    font: "FiraCode Retina 10";
+    font: "FiraCode Nerd Font Ret 10";
     line-margin: 10;
 
     display-ssh:    "";

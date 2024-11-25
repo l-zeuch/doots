@@ -80,10 +80,9 @@ ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan'
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor)
 
-plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions golang)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions golang direnv)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.profile
 
 # User configuration
 pfetch

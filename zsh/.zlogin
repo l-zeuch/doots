@@ -1,1 +1,1 @@
-source /home/l-zeuch/.profile
+source $HOME/.profile

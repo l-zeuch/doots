@@ -21,6 +21,7 @@ PATH="/var/lib/gems/2.7.0/gems:$PATH"
 PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 PATH="$HOME/.config/spicetify:$PATH"
 PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
+PATH="$HOME/.local/share/cargo/bin/:$PATH"
 export PATH=$PATH
 
 export TERMINAL="kitty"

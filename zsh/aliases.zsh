@@ -17,7 +17,7 @@ fi
 
 which eza &>/dev/null
 if [[ $? -eq 0 ]]; then
-    alias ls='eza -Fgh --group-directories-first --git --icons --hyperlink'
+    alias ls='eza -gh --group-directories-first --git --icons --hyperlink'
     alias lh='ls -d .*'
     alias lD='ls -D'
     alias lc='ls -1'
@@ -41,3 +41,7 @@ which zoxide &>/dev/null
 if [[ $? -eq 0 ]]; then
     alias cd='z'
 fi
+
+goinside() {
+    docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
+}
