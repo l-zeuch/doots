@@ -13,7 +13,7 @@
     font = Noto Sans Serif 11
     format = "<b>%a</b>: %s\n%b"
     frame_width = 2
-    height = 120
+    height = (0, 120)
     hide_duplicate_count = false
     history_length = 20
     horizontal_padding = 8
@@ -51,7 +51,7 @@
     title = Dunst
     transparency = 5
     vertical_alignment = center
-    width = 300
+    width = (0, 300)
     word_wrap = true
 
 [urgency_low]
