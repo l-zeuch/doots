@@ -6,8 +6,6 @@
 # Requires ZSH to run (because I used ZSH-specific features, duh).
 #
 
-PROFILE="$HOME/.profile"
-
 # Tell this script where your dotfiles you wish to backup are located.
 # Personally, I only care about those in my .config folder, and thus this script
 # is kinda written with that in mind.
@@ -19,7 +17,7 @@ PREFIX="$HOME/.config/"
 # Order matters here: List directories first, then specific files, especially
 # when you have individual files in directories you want to copy.
 FILES=( "bat/" "dunst/" "fontconfig/" "i3/" "i3status-rust/" "kitty/"
-  "tmux/" "rofi/" "picom.conf" "zsh/custom" "zsh/.zshrc" "zsh/.zlogin" "pythonrc.py" )
+    "rofi/" "picom.conf" "zsh/custom" "zsh/.zshrc" "zsh/.zlogin" "pythonrc.py" )
 
 # We remove the currently present parent folders to avoid copying our (new)
 # backups into these parent folders, thus keeping the structure tight and
@@ -33,9 +31,6 @@ clean() {
 
 make_backup() {
   clean
-
-  echo "\033[32;1m==>\033[0m \033[1mCopying $PROFILE...\033[0m"
-  cp $PROFILE profile
 
   for conf in "${FILES[@]}"; do
     parent=${conf%%/*}
