@@ -28,6 +28,7 @@ exec_always --no-startup-id dbus-update-activation-environment --all
 exec_always --no-startup-id gnome-keyring-daemon --start --components=secrets
 
 exec_always --no-startup-id birdtray
+exec_always --no-startup-id ffplay -v 0 -nodisp -autoexit Desktop/Music/startup.mp3
 
 # Includes
 include bindings.conf

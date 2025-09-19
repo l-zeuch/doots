@@ -4,21 +4,25 @@ lock() {
 	betterlockscreen -l blur &
 }
 
+play_poweroff() {
+    ffplay -v 0 -nodisp -autoexit "$HOME/Desktop/Music/shutdown.mp3"
+}
+
 case "$1" in
     lock)
         lock
         ;;
     logout)
-        i3-msg exit
+        play_poweroff && i3-msg exit
         ;;
     suspend)
         lock && systemctl suspend
         ;;
     reboot)
-        systemctl reboot
+        play_poweroff && systemctl reboot
         ;;
     shutdown)
-        systemctl poweroff
+        play_poweroff && systemctl poweroff
         ;;
     *)
         echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
