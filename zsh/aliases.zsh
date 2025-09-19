@@ -1,4 +1,3 @@
-# Just a meme
 which doas &>/dev/null
 if [[ $? -eq 0 ]]; then
 	alias didistutter='doas $(fc -ln -1)'
@@ -40,6 +39,11 @@ fi
 which zoxide &>/dev/null
 if [[ $? -eq 0 ]]; then
     alias cd='z'
+fi
+
+which fzf &>/dev/null
+if [[ $? -eq 0 ]]; then
+    alias f="fzf --height 40% --layout reverse --border --preview 'fzf-preview.sh {}' --bind 'enter:become(nvim {})'"
 fi
 
 goinside() {
