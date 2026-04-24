@@ -28,7 +28,7 @@ format = " $icon $mem_used.eng(prefix:M,w:4) ($cached.eng(prefix:M,w:4)) / $mem_
 
 [[block]]
 block = "load"
-format = " $icon  $1m.eng(w:4), $5m.eng(w:4), $15m.eng(w:4) "
+format = " $icon $1m.eng(w:4), $5m.eng(w:4), $15m.eng(w:4) "
 info = 0.6
 warning = 0.9
 critical = 1.2
@@ -36,6 +36,7 @@ critical = 1.2
 [[block]]
 block = "sound"
 format = " $icon $volume "
+headphones_indicator = true
 
 [[block]]
 block = "music"
@@ -44,7 +45,7 @@ interface_name_exclude = [".*kdeconnect.*", "mpd"]
 
 [[block]]
 block = "net"
-format = " $icon  ^icon_net_down $speed_down.eng(prefix:K,w:3) ^icon_net_up $speed_up.eng(prefix:K,w:3) "
+format = " $icon ^icon_net_down $speed_down.eng(prefix:K,w:3) ^icon_net_up $speed_up.eng(prefix:K,w:3) "
 
 [[block]]
 block = "time"

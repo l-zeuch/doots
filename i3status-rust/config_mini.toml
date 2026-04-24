@@ -1,0 +1,35 @@
+icons_format = "{icon}"
+
+[icons]
+icons = "awesome5"
+
+[theme]
+theme = "nord-dark"
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "amd_gpu"
+format = " $icon $utilization "
+format_alt = " $icon MEM: $vram_used_percents ($vram_used/$vram_total) "
+
+[[block]]
+idle = 55
+info = 65
+warning = 75
+block = "temperature"
+format = " $icon $average "
+chip = "k10temp-*"
+
+[[block]]
+block = "load"
+format = " $icon $1m.eng(w:4), $5m.eng(w:4), $15m.eng(w:4) "
+info = 0.6
+warning = 0.9
+critical = 1.2
+
+[[block]]
+block = "time"
+format = " $icon $timestamp.datetime(f:'%a, %F %T', l:en_GB) "
+interval = 1
