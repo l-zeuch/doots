@@ -96,6 +96,18 @@ if [[ -d $HOME/.local/share/gnupg ]]; then
 fi
 
 eval "$(zoxide init zsh)"
+export FZF_DEFAULT_OPTS="--height 40% --layout reverse --border"
+source <(fzf --zsh)
+
+__fzf_nvim() {
+    fzf --bind 'enter:become(nvim {})'
+}
+zle -N __fzf_nvim
+bindkey -s '^e' __fzf_nvim^M
+
+if [ -f "$HOME/.config/zsh/secrets.env" ]; then
+    source "$HOME/.config/zsh/secrets.env"
+fi
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then

@@ -49,3 +49,5 @@ fi
 goinside() {
     docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
 }
+
+export URLREGEX="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)\b"
