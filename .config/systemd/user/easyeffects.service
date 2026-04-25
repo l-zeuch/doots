@@ -1,0 +1,12 @@
+[Unit]
+Description=EasyEffects EQ
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/easyeffects --gapplication-service
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

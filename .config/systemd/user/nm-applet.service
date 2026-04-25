@@ -1,0 +1,12 @@
+[Unit]
+Description=NetworkManager applet
+Wants=NetworkManager.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/nm-applet
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

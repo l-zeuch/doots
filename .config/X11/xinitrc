@@ -1,0 +1,21 @@
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+# map right super key to compose
+setxkbmap -option compose:rwin
+# map numpad comma (german keyboard) to dot instead
+setxkbmap -option kpdl:dot
+
+xrandr --output DisplayPort-2 --mode 1920x1080 --rate 75 --rotate left --left-of DisplayPort-0
+xrandr --output DisplayPort-1 --mode 1920x1080 --rate 75 --right-of DisplayPort-0
+
+xrdb --merge "XDG_CONFIG_HOME/X11/XResources"
+
+ibus-daemon -drx --xim
+
+mkdir /tmp/log
+exec i3 &> /tmp/log/i3.log
