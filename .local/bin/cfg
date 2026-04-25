@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# originally written by Galen CC <https://github.com/galen8183>
+
+usage() {
+	cat <<EOF
+$(basename "$0") [command alias] [git options] [git args]
+XDG basedir compliant configuration file (dotfile) tracking with git
+
+Command aliases:
+	h     show this help text and exit
+	s     show repo status                           (git status)
+	i     show repo status including untracked files (git status --ignored)
+	a     add file(s) to the staging area            (git add)
+	c     commit changes to the repository           (git commit)
+	ca    amend the last commit                      (git commit --amend)
+	d     show changes to configuration files        (git diff)
+	l     show commit logs                           (git log)
+	su    show repository submodules                 (git submodule)
+	suu   update submodules to remote HEAD(s)        (git submodule update --remote)
+
+Providing no arguments will default to showing the repo status (git status).
+See git(1) and individual command manpages for details. All arguments not
+matching a command alias and all trailing arguments are passed directly to git.
+EOF
+	exit 0
+}
+
+CMD="$1"
+[ -n "$CMD" ] && shift
+case "$CMD" in
+	h)    usage ;;
+	s|"") set -- status "$@" ;;
+	i)    set -- status --ignored "$@" ;;
+	a)    set -- add "$@" ;;
+	c)    set -- commit "$@" ;;
+	ca)   set -- commit --amend "$@" ;;
+	d)    set -- diff "$@" ;;
+	l)    set -- log "$@" ;;
+	su)   set -- submodule "$@" ;;
+	suu)  set -- submodule update --remote "$@" ;;
+	*)    set -- "$CMD" "$@" ;; # pass anything else directly to git
+esac
+
+# keep home directory clean, but include a top-level README and .git* files
+CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
+CFG_FILES=".gitmodules .gitignore"
+for f in $CFG_FILES; do
+	cp -n "$CFG_DIR/$f" "$HOME/$f" 2>/dev/null # silence --no-clobber output
+done
+
+# see git(1) manpage for option details
+git --git-dir="$CFG_DIR/repo.git" --work-tree="$HOME" "$@"
+
+# keep CFG_FILES if another instance is running (i.e. while paging `git log`)
+pidof -qxo "%PPID" "$0" && exit 0
+for f in $CFG_FILES; do
+	mv "$HOME/$f" "$CFG_DIR/$f"
+done
