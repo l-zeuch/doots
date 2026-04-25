@@ -44,7 +44,7 @@ esac
 
 # keep home directory clean, but include a top-level README and .git* files
 CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
-CFG_FILES=".gitmodules .gitignore"
+CFG_FILES="README.md LICENSE.md .gitmodules .gitignore"
 for f in $CFG_FILES; do
 	cp -n "$CFG_DIR/$f" "$HOME/$f" 2>/dev/null # silence --no-clobber output
 done
