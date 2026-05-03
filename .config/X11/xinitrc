@@ -18,4 +18,4 @@ xrdb --merge "XDG_CONFIG_HOME/X11/XResources"
 ibus-daemon -drx --xim
 
 mkdir /tmp/log
-exec i3 &> /tmp/log/i3.log
+exec i3 &> /dev/null
