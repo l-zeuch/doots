@@ -117,4 +117,4 @@ fi
 # fi
 
 [ -f "/home/l-zeuch/.local/share/ghcup/env" ] && . "/home/l-zeuch/.local/share/ghcup/env" # ghcup-env
-[ -f "$HOME/.local/share/../bin/env" ] . "$HOME/.local/share/../bin/env"
+[ -f "$HOME/.local/share/../bin/env" ] && . "$HOME/.local/share/../bin/env"
