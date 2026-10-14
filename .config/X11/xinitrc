@@ -10,12 +10,21 @@ setxkbmap -option compose:rwin
 # map numpad comma (german keyboard) to dot instead
 setxkbmap -option kpdl:dot
 
-xrandr --output DisplayPort-2 --mode 1920x1080 --rate 75 --rotate left --left-of DisplayPort-0
-xrandr --output DisplayPort-1 --mode 1920x1080 --rate 75 --right-of DisplayPort-0
+xrandr --output DP-3 --mode 1920x1080 --rate 75 --rotate left --left-of DP-0
+xrandr --output DP-2 --mode 1920x1080 --rate 75 --right-of DP-1
 
 xrdb --merge "XDG_CONFIG_HOME/X11/XResources"
 
 ibus-daemon -drx --xim
 
 mkdir /tmp/log
-exec i3 &> /dev/null
+
+systemctl --user import-environment DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP
+dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP
+
+systemctl --user daemon-reload
+systemctl --user start i3-session.service
+
+i3 &> /dev/null
+
+systemctl --user stop i3-session.service
