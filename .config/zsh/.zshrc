@@ -115,3 +115,6 @@ fi
 # else
 #   export EDITOR='mvim'
 # fi
+
+[ -f "/home/l-zeuch/.local/share/ghcup/env" ] && . "/home/l-zeuch/.local/share/ghcup/env" # ghcup-env
+. "$HOME/.local/share/../bin/env"

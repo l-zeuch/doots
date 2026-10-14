@@ -21,6 +21,8 @@ PATH="$HOME/.dotnet:$HOME/.dotnet/tools:$PATH"
 PATH="$HOME/.local/share/cargo/bin/:$PATH"
 export PATH=$PATH
 
+[ -f "/home/l-zeuch/.local/share/ghcup/env" ] && . "/home/l-zeuch/.local/share/ghcup/env" # ghcup-env
+
 export EDITOR=/usr/bin/nvim
 
 # XDG Base Directory Specification
@@ -48,6 +50,10 @@ export GOPATH="$XDG_DATA_HOME/go"
 # GTK
 export GTK_RC_FILES="$XDG_CONFIG_HOME/gtk-1.0/gtkrc"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+
+# Haskell
+export GHCUP_USE_XDG_DIRS=true
+export STACK_XDG=1
 
 # Java
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
