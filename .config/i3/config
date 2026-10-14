@@ -38,3 +38,5 @@ include workspaces.conf
 include applications.conf
 
 exec_always --no-startup-id feh --no-fehbg --bg-fill ~/Desktop/Pictures/kittyboard.png
+
+exec_always --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 300 'xset dpms force off'
