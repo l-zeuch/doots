@@ -1,3 +1,6 @@
 include "%L"
 
 <Multi_key> <equal> <equal> : "≡"
+<Multi_key> <slash> <backslash> : "∧"
+<Multi_key> <backslash> <slash> : "∨"
+<Multi_key> <backslash> <minus> <slash> : "⊻"
