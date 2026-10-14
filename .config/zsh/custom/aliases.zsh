@@ -50,4 +50,14 @@ goinside() {
     docker exec -it $1 bash -c "stty cols $COLUMNS rows $LINES && bash";
 }
 
+pre_miktex() {
+    setopt localoptions ERR_RETURN
+    if ! [[ -d /opt/miktex/lib ]]; then exit 0; fi
+    LD_PRELOAD=""
+    for f in /opt/miktex/lib/*.so*; do
+        LD_PRELOAD="$f:$LD_PRELOAD"
+    done
+    export LD_PRELOAD
+}
+
 export URLREGEX="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)\b"
