@@ -10,7 +10,7 @@ setxkbmap -option compose:rwin
 # map numpad comma (german keyboard) to dot instead
 setxkbmap -option kpdl:dot
 
-xrandr --output DP-3 --mode 1920x1080 --rate 75 --rotate left --left-of DP-0
+xrandr --output DP-3 --mode 1920x1080 --rate 75 --rotate left --left-of DP-1
 xrandr --output DP-2 --mode 1920x1080 --rate 75 --right-of DP-1
 
 xrdb --merge "XDG_CONFIG_HOME/X11/XResources"
