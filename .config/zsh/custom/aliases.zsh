@@ -16,7 +16,7 @@ fi
 
 which eza &>/dev/null
 if [[ $? -eq 0 ]]; then
-    alias ls='eza -gh --group-directories-first --git --icons --hyperlink'
+    alias ls='eza -gh --group-directories-first --git --icons --hyperlink=always'
     alias lh='ls -d .*'
     alias lD='ls -D'
     alias lc='ls -1'
