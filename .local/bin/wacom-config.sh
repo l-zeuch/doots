@@ -9,4 +9,4 @@ done
 
 stylus="Wacom One by Wacom M Pen stylus"
 # configure the buttons on ${stylus} with your xsetwacom commands...
-xsetwacom set "${stylus}" MapToOutput DisplayPort-0
+xsetwacom set "${stylus}" MapToOutput DP-1
